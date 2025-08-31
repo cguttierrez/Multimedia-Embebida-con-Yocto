@@ -5,9 +5,10 @@
 ## Date 31-8-2025[Timezone]
 
 ### Summary of Activity
-- [Key action 1]
-- [Key action 2]
-- ...
+- [Investigacion sobre el flujo con el marco de trabajo de Gstreamer, OpenCV y sus características.]
+- [Se exploran repositorios de referencia para escoger un modelo de interés para su aplicación.]
+- []
+- []
 
 ### Details/Observations
 [Detailed description of what was done, challenges encountered, solutions implemented, and any relevant observations. Include code snippets or command outputs if helpful.]
