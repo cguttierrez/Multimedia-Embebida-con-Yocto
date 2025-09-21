@@ -1,23 +1,42 @@
+# --- Archivos de video ---
+*.mp4
 
+# --- Archivos de Python ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+*.manifest
+*.spec
 
-                      ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-                      ⠀⠀⠀⠀⠀⠀⠀⢀⣴⣿⣿⣿⣿⣿⣿⣿⣦⡀⠀⠀⠀⠀⠀⠀⠀
-                      ⠀⠀⠀⠀⠀⢀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⡀⠀⠀⠀⠀⠀
-                      ⠀⠀⠀⠀⢀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡀⠀⠀⠀⠀
-                      ⠀⠀⠀⠀⠘⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠃⠀⠀⠀⠀
-                           🚀 Bienvenido a Neovim 🚀     
+# --- Entornos virtuales ---
+.venv/
+venv/
+ENV/
+env/
+env.bak/
 
+# --- Archivos de configuración ---
+*.ini
+*.log
+*.pot
+*.pyc
+*.pkl
 
-               📄 Nuevo archivo                                 e
+# --- Archivos de IDE ---
+.vscode/
+.idea/
+*.swp
+*.swo
 
-               🔍 Buscar archivo                                f
+# --- Archivos de sistemas operativos ---
+.DS_Store
+Thumbs.db
 
-               🕑 Recientes                                     r
-
-               📂 Explorador                                    p
-
-               💻 Terminal                                      t
-
-               ❌ Salir                                         q
-
-                             Hecho con ❤️ y Neovim
+# --- Archivos de compilación ---
+build/
+dist/
+.eggs/
