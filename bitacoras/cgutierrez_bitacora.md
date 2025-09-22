@@ -1,7 +1,7 @@
 # 26-8-2025 - [bitacora personal-Carlos Gutierrez]
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-## Date 29-8-2025[Timezone]
+## Date 24-8-2025[Timezone]
 
 ### Summary of Activity
 - Investigacion sobre el flujo con el marco de trabajo de Gstreamer
@@ -23,7 +23,7 @@ Se investigó sobre los paquetes necesarios para GStreamer, tales como:
 - https://wiki-archlinux-org.translate.goog/title/GStreamer?_x_tr_sl=en&_x_tr_tl=es&_x_tr_hl=es&_x_tr_pto=tc
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-## Date 30-8-2025  [Timezone]
+## Date 26-8-2025  [Timezone]
 
 ### Summary of Activity
 - Aplicación: Reconocimiento de rostros y contador 
@@ -49,10 +49,10 @@ appsink → permite recibir los frames en tu código Python con OpenCV.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-## Date 31-8-2025  [Timezone]
+## Date 30-8-2025  [Timezone]
 
 ### Summary of Activity
-- Selección de la aplicación en el forms y la conformación de grupos
+- Selección de la aplicación en el forms y la conformación de dicha aplicación en grupos
 - ...
 
 ### Details/Observations
