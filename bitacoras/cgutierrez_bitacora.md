@@ -91,7 +91,7 @@ appsink → permite recibir los frames en tu código Python con OpenCV.
 
 ### Details/Observations
 - Se trató de compilar la imagen mínima para la virtual box, por lo que, se trató de pasar la imagen creada por yocto a una imagen .iso para virtualbox
-- Se le hizo la consula al chat bot Chat GPT de como podría realizar la tarea de generar un .iso, por lo que trató de crear un CD booteable a partir de los archivos que genera Yocto, se preparó una carpeta con esos archivos .ext4 junto con un cargador de arranque isolinux y luego se usa mkisofs para empaquetar todo en un archivo .iso
+- Se le hizo la consula al chat bot Chat GPT de como podría realizar la tarea de generar un .iso, por lo que trató de crear un  booteable a partir de los archivos que genera Yocto, se preparó una carpeta con esos archivos .ext4 junto con un cargador de arranque isolinux y luego se usa mkisofs para empaquetar todo en un archivo .iso
 
 ### Errores y soluciones
 - La generación del .iso no se concretó
