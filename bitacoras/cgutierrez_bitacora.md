@@ -238,4 +238,19 @@ IMAGE_FSTYPES += "wic.vmdk wic iso"
 ### References/Links
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## Date 21-9-2025 22-9-2025 23-9-2025 [Timezone]
+
+### Summary of Activity
+-  Correción de machine al generar imagen 
+
+### Details/Observations
+- La imagen se debe generar genericx86-64, ya que se estaba genrando con la qemux86-64 
+### Errores y soluciones
+- La imagen no se carga correctamente en la virtualbox
+- Se soluciona marcando la casilla UEFI debido a que la machine genericx86-64 requiere de una UEFI  para cargar la imagen
+
+
+### References/Links
+Consulta
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
