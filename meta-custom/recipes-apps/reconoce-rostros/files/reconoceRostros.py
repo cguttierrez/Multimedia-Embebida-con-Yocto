@@ -9,14 +9,17 @@ from gi.repository import Gst
 Gst.init(None)
 
 # ====== Configuración ======
-FILE_PATH = "/usr/share/video2.mp4"  # Ruta del video
+FILE_PATH = "/usr/share/video1.mp4"  # Ruta del video
 BLOCK_SIZE = 100                     # Número de frames por bloque
 OUTPUT_FILE = "rostros_totales.txt"
-MIN_FACE_SIZE = 100
+MIN_FACE_SIZE = 50
+MIN_EYE_SIZE = 1                      # Tamaño mínimo de los ojos (ancho y alto)
+MAX_PEOPLE_LIMIT = 5                  # Límite de personas para alerta
 # ==========================
 
-# Inicializar detector Haar
-face_cascade = cv2.CascadeClassifier("/usr/share/haarcascade_frontalface_default.xml") 
+# Inicializar detectores Haar
+face_cascade = cv2.CascadeClassifier("/usr/share/haarcascade_frontalface_default.xml")
+eye_cascade = cv2.CascadeClassifier("/usr/share/haarcascade_eye.xml")
 
 # Pipeline GStreamer → OpenCV
 pipeline_str = (
@@ -38,7 +41,6 @@ faces_per_frame = []
 
 while True:
     block_count = 0
-    # Procesar un bloque de frames
     while block_count < BLOCK_SIZE:
         sample = appsink.emit("try-pull-sample", Gst.SECOND)
         if not sample:
@@ -52,36 +54,50 @@ while True:
         if not success:
             continue
 
-        # Convertir buffer a frame (sin .copy() para ahorrar RAM)
-        frame = np.ndarray((height, width, 3), dtype=np.uint8, buffer=map_info.data)
+        frame = np.ndarray((height, width, 3), dtype=np.uint8, buffer=map_info.data).copy()
         buf.unmap(map_info)
 
-        # Detección de rostros
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         faces = face_cascade.detectMultiScale(
             gray, scaleFactor=1.1, minNeighbors=5, minSize=(MIN_FACE_SIZE, MIN_FACE_SIZE)
         )
-        count_faces = len(faces)
-        if count_faces > 10:
-            print("Alerta!!! el número de personas supera el límite")
-            print("Se detectaron:", count_faces, "personas") 
-        total_faces += count_faces
-        faces_per_frame.append(count_faces)
+
+        # ==== Contador de rostros en este frame ====
+        count_faces_in_frame = 0
+
+        for (x, y, w, h) in faces:
+            roi_gray = gray[y:y+h, x:x+w]
+            eyes = eye_cascade.detectMultiScale(
+                roi_gray,
+                scaleFactor=1.1,
+                minNeighbors=5,
+                minSize=(MIN_EYE_SIZE, MIN_EYE_SIZE)
+            )
+
+            if len(eyes) >= 2:   # valida que efectivamente es un rostro
+                total_faces += 1
+                count_faces_in_frame += 1
+
+        # ==== Verificación de alerta ====
+        if count_faces_in_frame > MAX_PEOPLE_LIMIT:
+            print("Alerta!!! El número de personas supera el límite permitido de",MAX_PEOPLE_LIMIT)
+            print("Se detectaron:", count_faces_in_frame, "personas en el frame", frame_idx)
+
+        faces_per_frame.append(count_faces_in_frame)
 
         frame_idx += 1
         block_count += 1
 
     if block_count == 0:
-        break  # no quedaron más frames
+        break
 
-# Guardar resultados
+# ====== Guardar resultados ======
 with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
     f.write("=== RESULTADOS FINALES ===\n\n")
     for i, num in enumerate(faces_per_frame, start=1):
         f.write(f"Frame {i}: {num} rostros\n")
-    f.write("\n")
-  
 
-print(f"Resultados guardados en: {OUTPUT_FILE}")
+print(f"Resultados de las cantidades de rostros están guardados en: {OUTPUT_FILE}")
 
 pipeline.set_state(Gst.State.NULL)
+
